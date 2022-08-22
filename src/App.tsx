@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import './App.scss';
+import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
+import { PageWelcome } from './pages/PageWelcome';
+import { PageMembers } from './pages/PageMembers';
+import { PageRegister } from './pages/PageRegister';
+import { PageLogin } from './pages/PageLogin';
+import { PageLogout } from './pages/PageLogout';
+import { PageConfirmLink } from './pages/PageConfirmLink';
 
 function App() {
-  const [count, setCount] = useState(0)
+	return (
+		<div className="App">
+			<h1>Language Tandem Group</h1>
+			<nav>
+				<NavLink to="/welcome">Welcome</NavLink>
+				<NavLink to="/members">Members</NavLink>
+				<NavLink to="/register">Register</NavLink>
+				<NavLink to="/login">Login</NavLink>
+				<NavLink to="/logout">Logout</NavLink>
+			</nav>
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+			<Routes>
+				<Route path="/welcome" element={<PageWelcome />} />
+				<Route path="/members" element={<PageMembers />} />
+				<Route path="/register" element={<PageRegister />} />
+				<Route path="/login" element={<PageLogin />} />
+				<Route path="/logout" element={<PageLogout />} />
+				<Route path="/confirm-link" element={<PageConfirmLink />} />
+				<Route path="/" element={<Navigate to="/welcome" replace />} />
+			</Routes>
+		</div>
+	);
 }
 
-export default App
+export default App;
